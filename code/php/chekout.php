@@ -24,7 +24,7 @@ if (isset($_POST['Ajouter'])){
         'qte'=>$qte,
     );
     $totalPrix = $_SESSION['totalPrix'] += $_SESSION['produit'.$id]['total'];
-    $cont = $_SESSION['cont'] +=1;
+    $count = ($_SESSION['count']);
     header('Location:panier.php');
 }
 

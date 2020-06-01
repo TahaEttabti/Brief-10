@@ -1,5 +1,4 @@
 <?php
-// print_r($_SESSION);
 include('menu.php');
 // session_destroy();
 
@@ -10,7 +9,18 @@ if ($conn->connect_error) {
 } 
 
 $totalPrix = $_SESSION['totalPrix'];
-$cont = $_SESSION['cont'];
+
+if(isset($_GET['action'])) {
+    if($_GET['action'] == "delete") {
+        foreach($_SESSION as $key => $value) {
+            if($value['idPro'] == $_GET['idPro']) {
+                unset($_SESSION [$key]);
+                echo '<script>alert("Produit est effacer")</script>';
+                echo '<script>window.location="panier.php"</script>';
+            }
+        }
+    }
+}
 
 ?>
 <!doctype html>
@@ -47,20 +57,11 @@ $cont = $_SESSION['cont'];
         </tr>
             <?php endif;?>
             <?php endforeach;?>     
-    </table>
-    <br><br>
-    <div class="tableTotal">  
-    <table>
          <tr>
-            <th>Nombre total</th>
-            <th>La Somme de Prix</th>    
-        </tr>
-        <tr>
-            <td><?php echo $cont ?></td>
-            <td><?php echo $totalPrix ?>DH</td>
+            <td colspan="3" style="background-color:#ffff00;">Total du Prix en DH </td>
+            <td colspan="2" style="background-color:#ffbf00;"><?php echo $totalPrix ?> DH </td>
         </tr>
     </table>
-    </div>
    <!-- <div><a class="button" href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a></div> -->
     <a href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a>
 </div>

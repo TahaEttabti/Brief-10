@@ -17,18 +17,12 @@ th, td {
 td {
  text-align:center;
  }
-.tableTotal {
-    border-collapse: collapse;
-    margin-left: 63%;
-    display: flex;
-    padding-bottom: 8px;
-} 
 button.btn.btn-light.btn-lg {
-    float: right;
-    margin: 0 16.3%;
+    float: left;
+    margin: 5% 2%;
     width: 20%;
 } 
 
 footer {
-    margin-top: 8%;
+    margin-top: 13%;
 }
