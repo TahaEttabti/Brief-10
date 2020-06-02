@@ -38,5 +38,5 @@ try {
             <?php endif;?> 
           
 <?php endforeach;
-    header('Location:index.php');
+    header('Location:myCommande.php');
 ?>

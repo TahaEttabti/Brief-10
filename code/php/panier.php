@@ -10,17 +10,17 @@ if ($conn->connect_error) {
 
 $totalPrix = $_SESSION['totalPrix'];
 
-if(isset($_GET['action'])) {
-    if($_GET['action'] == "delete") {
-        foreach($_SESSION as $key => $value) {
-            if($value['idPro'] == $_GET['idPro']) {
-                unset($_SESSION [$key]);
-                echo '<script>alert("Produit est effacer")</script>';
-                echo '<script>window.location="panier.php"</script>';
-            }
-        }
-    }
-}
+// if(isset($_GET['action'])) {
+//     if($_GET['action'] == "delete") {
+//         foreach($_SESSION as $key => $value) {
+//             if($value['idPro'] == $_GET['idPro']) {
+//                 unset($_SESSION [$key]);
+//                 echo '<script>alert("Produit est effacer")</script>';
+//                 echo '<script>window.location="panier.php"</script>';
+//             }
+//         }
+//     }
+// }
 
 ?>
 <!doctype html>
@@ -63,7 +63,7 @@ if(isset($_GET['action'])) {
         </tr>
     </table>
    <!-- <div><a class="button" href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a></div> -->
-    <a href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a>
+    <a href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Payer</button></a>
 </div>
 </div>
 <?php include('footer.php'); ?>
