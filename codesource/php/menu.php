@@ -43,18 +43,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="managePanierStandard.php">Panier standard</a>
                 </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Commandes
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="commandesCours.php">commandes en cours</a>
-                <a class="dropdown-item" href="commandesStandard.php">Commandes standard</a>
-                <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="commandesFini.php">Commandes fini</a>
-                    <a class="dropdown-item" href="commandesRefuse.php">commandes refuse</a>
-                </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">Déconnexion</a>
                 </li>';
@@ -69,9 +57,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="panierStandard.php">Panier standard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="myCommande.php">Commande</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Déconnexion</a>

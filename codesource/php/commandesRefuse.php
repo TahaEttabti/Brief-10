@@ -1,5 +1,6 @@
 <?php
     include('menu.php');
+    include('header.php');
 
     // Create connection
     $conn = new mysqli("localhost", "root", "", "vente");
@@ -8,21 +9,20 @@
     die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT commande.idCommande,users.nom,users.prenom,commande.dateCommande,commande.telephone,commande.adresse,commande.prixUT FROM commande,users WHERE commande.etat_commande='refuse' AND commande.idUser=users.idUser ORDER BY commande.dateCommande ASC";
+    $sql = "SELECT commande.idCommande,users.nom,users.prenom,commande.adresse,commande.telephone,commande.dateCommande FROM commande,users WHERE commande.etat_commande='refuse' AND commande.idUser=users.idUser ORDER BY commande.dateCommande ASC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
-        echo '<div class="divstandard"><table class="table table-striped">
+        echo '<table class="table table-striped divstandard">
             <thead>
             <tr>
                 <th scope="col">id commande</th>
                 <th scope="col">nom client</th>
                 <th scope="col">prenom client</th>
-                <th scope="col">date commande</th>
-                <th scope="col">prix</th>
-                <th scope="col">telephone</th>
                 <th scope="col">adresse</th>
+                <th scope="col">numéro de téléphone</th>
+                <th scope="col">date commande</th>
             </tr>
             </thead>
             <tbody>';
@@ -31,17 +31,16 @@
                     <th scope="row">'. $row["idCommande"].'</th>
                     <td>'. $row["nom"].'</td>
                     <td>'. $row["prenom"].'</td>
-                    <td>'. $row["dateCommande"].'</td>
-                    <td>'. $row["prixUT"].'</td>
-                    <td>'. $row["telephone"].'</td>
                     <td>'. $row["adresse"].'</td>
+                    <td>'. $row["telephone"].'</td>
+                    <td>'. $row["dateCommande"].'</td>
                 </tr>';
         }
         echo "</tbody>
-        </table></div>";
+        </table>";
     } 
     else {
-        echo '<div class="divstandard"><p class="text-center font-weight-bolder">Aucun commande</p></div>';
+    echo '<p class="text-center font-weight-bolder">Aucun catégorie</p>';
     }
     $conn->close();
     include('footer.php');
@@ -49,3 +48,12 @@
         document.location = $(this).data("href");
     });</script>';
 ?>
+
+<style>
+   body { 
+    margin-top: 1%;
+    }
+   footer {
+    margin-top: 25%;
+   } 
+</style>
