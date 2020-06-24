@@ -53,10 +53,10 @@
                 <a class="nav-link" href="produit.php">Produit</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="panier.php">Panier</a>
+                <a class="nav-link" href="panierStandard.php">Panier standard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="panierStandard.php">Panier standard</a>
+            <a class="nav-link" href="myCommande.php">Commande</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Déconnexion</a>

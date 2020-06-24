@@ -1,4 +1,5 @@
 <?php
+// print_r($_SESSION);
 include('menu.php');
 // session_destroy();
 
@@ -7,65 +8,69 @@ $conn = new mysqli("localhost", "root", "", "vente");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-
-$totalPrix = $_SESSION['totalPrix'];
-
-if(isset($_GET['action'])) {
-    if($_GET['action'] == "delete") {
-        foreach($_SESSION as $key => $value) {
-            if($value['idPro'] == $_GET['idPro']) {
-                unset($_SESSION [$key]);
-                echo '<script>alert("Produit est effacer")</script>';
-                echo '<script>window.location="panier.php"</script>';
-            }
-        }
-    }
+if(isset($_GET['idPro'])) {
+$id = $_GET['idPro'];
+$sql = "SELECT * FROM produit WHERE idProduit='$id'";
+$result = mysqli_query($conn, $sql);
 }
 
 ?>
-<!doctype html>
-        <html lang="en">
-        <head>
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link rel="stylesheet" href="../css/panier.css">
-        </head>
-<body>
-<div id="row">
-    <div class="th"> 
-    <table>
+<style>
+    
+form.post {
+    margin: 6% 25%;
+}
 
-    <br>
-        <tr>
-        <th>produit</th>
-        <th>Nom du Produit</th>
-        <th>prix</th>
-        <th>total</th>
-        <th>quantité</th>
+.input {
+    margin-top: 5%;
+    margin-left: -5.5%;
+}
+.produit {
+    text-align: center;
+}
+.prix {
+    text-align: center;
+}
+.cls {
+    text-align: center;
+}
+
+.groupe {
+    margin-left: 16%;
+    padding-top: 2%;
+}
+
+button.btn.btn-light.btn-lg {
+    margin-left: 24%;
+    font-size: 15px;
+}
+
+#photo {
+    width: 30%;
+    margin-left: 15%;
+}
+
+label {
+    margin-left: 1%;
+}
+
+</style>
+
+<?php $row = mysqli_fetch_assoc($result)?>
+<form method="POST" action="chekout.php" class="post">
+    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['imageProduit'] )?>" class="card-img-top" id="photo" height="200"/>  
+    <div class="input">
+    <input type="hidden" value="<?php echo $row['idProduit'] ?>" name="idPro">
+    <label for="">Nom du Produit : </label>
+    <input type="text" value="<?php echo $row['nomProduit'] ?>" name="nom" class="produit">
+    <label for="">Prix en DH: </label>
+    <input type="text" value="<?php echo $row['prix'] ?>" name="prix" class="prix">
     </div>
-        </tr>
-        <tr>
-        <?php foreach($_SESSION as $key => $value):?>
-        <?php if(substr($key,0,7) == "produit"):
-            ?>    
-        <td><?php echo $value['idPro']?></td>
-        <td><?php echo $value['nom']?></td>
-        <td><?php echo $value['prix']?>DH</td>
-        <td><?php echo $value['total']?>DH</td>
-        <td><?php echo $value['qte']?></td>
-        </tr>
-            <?php endif;?>
-            <?php endforeach;?>     
-         <tr>
-            <td colspan="3" style="background-color:#ffff00;">Total du Prix en DH </td>
-            <td colspan="2" style="background-color:#ffbf00;"><?php echo $totalPrix ?> DH </td>
-        </tr>
-    </table>
-   <!-- <div><a class="button" href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a></div> -->
-    <a href="Adddb.php"><button type="button" name="addtodb" class="btn btn-light btn-lg">Envoyer</button></a>
-</div>
-</div>
-<?php include('footer.php'); ?>
+    <div class="form-group" class="groupe">
+    <label for="">Quantité : </label>
+    <input type="number" name="qte" value="1" class="cls">
+    </div>
+    <button class="btn btn-light btn-lg" type="submit" name="Ajouter">Payer</button>
+</form>
 
-
+<?php  include('footer.php'); ?>

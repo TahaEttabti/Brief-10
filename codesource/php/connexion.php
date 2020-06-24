@@ -19,13 +19,13 @@ if(isset($_POST['login']))
           if($rows>0 && $check['type_user']=='admin'){
             $adm = $check['type_user'];
             $_SESSION['admin']=$adm;
-            header('Location:/code/php/');
+            header('Location:/codesource/php/');
            } else
               if($rows>0 && $check['type_user']=='Client') {
               $clt = $check['type_user'];
               $_SESSION['id']=$check['idUser'];
               $_SESSION['Client']=$clt;
-              header('Location:/code/php/');
+              header('Location:/codesource/php/');
           }else echo '<script>alert("Email ou mot de passe est incorret")</script>';  
      }else echo '<script>alert("Svp Remplir tous les champs !!")</script>';
 
